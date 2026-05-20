@@ -27,11 +27,11 @@ Config = {
     Duty = vector3(894.88, -179.22, 74.7),
 
     Rewards = 'cryptostick',
-    
+
     Advanced = {
         Bonus = {
             Enabled = true,
-            Percentage = 10,    -- bonus in % for intact vehicle
+            Percentage = 10, -- bonus in % for intact vehicle
         },
         Speech = {
             Enabled = true,
@@ -40,8 +40,8 @@ Config = {
             Grateful = 'GENERIC_THANKS',
             Happy = 'GENERIC_HAPPY'
         },
-        MinCabHealth = 750,     -- min vehicle health before mission stops
-        MaxCrashesAllowed = 5,  -- amount of crashes before mission stops
+        MinCabHealth = 750,    -- min vehicle health before mission stops
+        MaxCrashesAllowed = 5, -- amount of crashes before mission stops
     },
 
     NPCLocations = {

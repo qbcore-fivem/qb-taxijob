@@ -1,4 +1,4 @@
-local QBCore = exports['qb-core']:GetCoreObject()
+local sharedItems = exports['qb-core']:GetShared('Items')
 
 function NearTaxi(src)
     local ped = GetPlayerPed(src)
@@ -13,7 +13,7 @@ end
 
 RegisterNetEvent('qb-taxi:server:NpcPay', function(payment, hasReceivedBonus)
     local src = source
-    local Player = QBCore.Functions.GetPlayer(src)
+    local Player = exports['qb-core']:GetPlayer(src)
     if Player.PlayerData.job.name == Config.jobRequired then
         if NearTaxi(src) then
             local randomAmount = math.random(1, 5)
@@ -34,13 +34,13 @@ RegisterNetEvent('qb-taxi:server:NpcPay', function(payment, hasReceivedBonus)
             if Config.Management then
                 exports['qb-banking']:AddMoney('taxi', payment, 'Customer payment')
             else
-                Player.Functions.AddMoney('cash', payment, 'Taxi payout')
+                Player.AddMoney('cash', payment, 'Taxi payout')
             end
 
             local chance = math.random(1, 100)
             if chance < 26 then
                 exports['qb-inventory']:AddItem(src, Config.Rewards, 1, false, false, 'qb-taxi:server:NpcPay')
-                TriggerClientEvent('qb-inventory:client:ItemBox', src, QBCore.Shared.Items[Config.Rewards], 'add')
+                TriggerClientEvent('qb-inventory:client:ItemBox', src, sharedItems[Config.Rewards], 'add')
             end
         else
             DropPlayer(src, 'Attempting To Exploit')

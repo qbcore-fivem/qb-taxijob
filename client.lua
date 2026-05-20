@@ -1,6 +1,6 @@
 -- Variables
 
-local QBCore = exports['qb-core']:GetCoreObject()
+local QBCore = exports['qb-core']:GetCoreObject({ 'Functions' })
 local meterIsOpen = false
 local meterActive = false
 local lastLocation = nil
@@ -54,8 +54,14 @@ RegisterNetEvent('QBCore:Client:OnPlayerLoaded', function()
     end
 end)
 
-RegisterNetEvent('QBCore:Client:OnJobUpdate', function(JobInfo)
-    PlayerJob = JobInfo
+RegisterNetEvent('QBCore:Client:OnPlayerUpdated', function(key, val)
+    if key == 'job' then
+        local JobInfo = val
+        PlayerJob = JobInfo
+    elseif key == 'all' then
+        local JobInfo = val.job
+        PlayerJob = JobInfo
+    end
 end)
 
 local dutyKey = false
