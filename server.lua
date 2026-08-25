@@ -11,11 +11,12 @@ function NearTaxi(src)
     end
 end
 
-RegisterNetEvent('qb-taxi:server:NpcPay', function(payment, hasReceivedBonus)
+RegisterNetEvent('qb-taxi:server:NpcPay', function(_, hasReceivedBonus)
     local src = source
     local Player = exports['qb-core']:GetPlayer(src)
     if Player.PlayerData.job.name == Config.jobRequired then
         if NearTaxi(src) then
+            local payment = math.random(65, 105)
             local randomAmount = math.random(1, 5)
             local r1, r2 = math.random(1, 5), math.random(1, 5)
             if randomAmount == r1 or randomAmount == r2 then payment = payment + math.random(10, 20) end
